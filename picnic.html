@@ -62,10 +62,29 @@
     let un_boton;
 
     document.addEventListener("DOMContentLoaded", function() {
-         // un_boton = document.getElementById();
-         // document.getElementById().addEventListener("click", );
+         un_boton = document.getElementById('un_boton');
+         un_boton.addEventListener("click", irPorAlgo );
           //console.log("DOM listo");
     });
+      async function irPorAlgo() {
+  try {
+        const respuesta = await fetch("https://api.thedogapi.com/v1/facts/random",      {
+        method: "GET", 
+        headers: {
+             "x-api-key": "YOUR-API-KEY"
+        }
+});
+    if (!respuesta.ok) {
+      console.log("Error");
+      //throw new Error("Error");
+    }
+    const data = await respuesta.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error:", error.message);
+  }
+}
+
 
 
      async function obtenerJSON() {
