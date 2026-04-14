@@ -58,12 +58,20 @@
     <div>8</div>
 
     <script>
+      async function IMAGENPERRO() {
+      const respuesta = await fetch ('https://api.thedogapi.com/v1/images/search?limit=1');
+      const datos = await respuesta.json();
+      console.log(datos[0]);
+      let i = document.createElement("img");
+      i.src= datos[0].url;
+      i.setAttribute("width","800");
+      document.getElementById("imgen").appendChild(i);
   
     let un_boton;
 
     document.addEventListener("DOMContentLoaded", function() {
          un_boton = document.getElementById('un_boton');
-         un_boton.addEventListener("click", irPorAlgo );
+         un_boton.addEventListener("click", IMAGENPERRO );
           //console.log("DOM listo");
     });
       async function irPorAlgo() {
